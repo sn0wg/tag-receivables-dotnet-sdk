@@ -42,11 +42,20 @@ namespace TagSDK.Exceptions
             [JsonProperty("errors")]
             public List<string> Errors { get; set; }
 
+            [JsonProperty("error")]
+            private List<string> AltErrors { set => Errors = value; }
+
             [JsonProperty("processKey")]
             public string ProcessKey { get; set; }
 
+            [JsonProperty("processkey")]
+            private string AltProcessKey { set => ProcessKey = value; }
+
             [JsonProperty("createdAt")]
             public DateTime? CreatedAt { get; set; }
+
+            [JsonProperty("createdDate")]
+            private DateTime? AltCreatedAt { set => CreatedAt = value; }
         }
     }
 }
