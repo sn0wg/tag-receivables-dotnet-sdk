@@ -10,7 +10,6 @@ namespace TagSDK.Models.Receivable.Reconciliation
 {
     public class ReconciliationQueryResponse : BaseResponse
     {
-
         [JsonProperty("reconciliationKey")]
         public string ReconciliationKey { get; set; }
 
@@ -23,7 +22,7 @@ namespace TagSDK.Models.Receivable.Reconciliation
         public DocumentType RecipientDocumentType { get; set; }
 
         [JsonProperty("recipient")]
-        public string recipient { get; set; }
+        public string Recipient { get; set; }
 
         [JsonProperty("reconciliationStatus")]
         public string ReconciliationStatus { get; set; }

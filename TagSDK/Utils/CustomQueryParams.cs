@@ -7,19 +7,21 @@ namespace TagSDK.Utils
 {
     public class CustomQueryParams
     {
-        public string ReturnQueryParams(params object[] objts) {
+        public string ReturnQueryParams(params object[] objts)
+        {
             return ReturnQueryParams(string.Empty, objts);
         }
+
         public string ReturnQueryParams(string queryString, params object[] objts)
         {
-            foreach (object obj in objts)
+            foreach (var obj in objts)
             {
-                Type typeObj = obj.GetType();
+                var typeObj = obj.GetType();
                 IList<PropertyInfo> props = new List<PropertyInfo>(typeObj.GetProperties());
 
-                foreach (PropertyInfo prop in props)
+                foreach (var prop in props)
                 {
-                    object value = prop.GetValue(obj, null);
+                    var value = prop.GetValue(obj, null);
 
                     if (value != null)
                     {
@@ -27,12 +29,11 @@ namespace TagSDK.Utils
                         if (propName != null)
                         {
                             if (typeof(DateTime).IsInstanceOfType(value))
+                            {
                                 value = ConvertDate((DateTime)value);
+                            }
 
-                            if (string.IsNullOrEmpty(queryString))
-                                queryString = $"?{propName}={value}";
-                            else
-                                queryString = $"{queryString}&{propName}={value}";
+                            queryString = string.IsNullOrEmpty(queryString) ? $"?{propName}={value}" : $"{queryString}&{propName}={value}";
                         }
                     }
                 }

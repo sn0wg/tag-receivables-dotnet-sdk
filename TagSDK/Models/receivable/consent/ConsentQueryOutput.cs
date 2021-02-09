@@ -8,7 +8,6 @@ namespace TagSDK.Models.Receivable.Consent
 {
     public class ConsentQueryOutput : Consent
     {
-
         [JsonProperty("key")]
         public string Key { get; set; }
 

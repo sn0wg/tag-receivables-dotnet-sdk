@@ -6,7 +6,6 @@ namespace TagSDK.Models.Customer
 {
     public class CommercialEstablishmentRequest
     {
-
         [JsonProperty("commercialEstablishments")]
         public List<CommercialEstablishment> CommercialEstablishments { get; set; }
     }

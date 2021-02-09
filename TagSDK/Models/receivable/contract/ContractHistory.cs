@@ -12,7 +12,6 @@ namespace TagSDK.Models.Receivable.Contract
         public DateTime? ContractDueDate { get; set; }
 
         [JsonProperty("balanceDue")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal BalanceDue { get; set; }
 
@@ -20,7 +19,6 @@ namespace TagSDK.Models.Receivable.Contract
         public string ContractStatus { get; set; }
 
         [JsonProperty("reason")]
-
         public long Reason { get; set; }
 
         [JsonProperty("reasonDetails")]

@@ -7,7 +7,6 @@ namespace TagSDK.Services.Receivable.Consent
 {
     public interface IConsentService
     {
-
         Task<ConsentResponse> InsertConsents(ConsentRequest optInRequest, Profile profile);
         Task<BaseResponse> RejectOptIn(ConsentRejectRequest optInRejInput, Profile profile);
         Task<BaseResponse> PatchOptOut(string key);

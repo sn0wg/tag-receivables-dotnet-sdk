@@ -9,7 +9,6 @@ namespace TagSDK.Models.Receivable.Register
 {
     public class Receivable
     {
-
         [JsonProperty("reference")]
         public string Reference { get; set; }
 
@@ -28,7 +27,6 @@ namespace TagSDK.Models.Receivable.Register
         public string PaymentScheme { get; set; }
 
         [JsonProperty("amount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal Amount { get; set; }
 

@@ -6,7 +6,6 @@ namespace TagSDK.Models.Receivable.Transaction
 {
     public class Transaction
     {
-
         [JsonProperty("identifier")]
         public string Identifier { get; set; }
 

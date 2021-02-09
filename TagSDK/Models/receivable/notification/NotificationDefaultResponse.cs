@@ -10,6 +10,7 @@ namespace TagSDK.Models.Receivable.Notification
         [JsonProperty("eventType")]
         [JsonConverter(typeof(StringEnumConverter))]
         public EventType EventType { get; set; }
+
         [JsonProperty("data")]
         public T Data { get; set; }
     }

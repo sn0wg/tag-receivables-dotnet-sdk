@@ -8,7 +8,6 @@ namespace TagSDK.Models.Receivable.Notification
 {
     public class NotificationContract : BaseNotification
     {
-
         [JsonProperty("notificationReferenceDate")]
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd")]
         public DateTime? NotificationReferenceDate { get; set; }

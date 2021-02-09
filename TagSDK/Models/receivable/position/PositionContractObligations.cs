@@ -8,7 +8,6 @@ namespace TagSDK.Models.Receivable.Position
 {
     public class PositionContractObligations
     {
-
         [JsonProperty("key")]
         public string Key { get; set; }
 
@@ -41,12 +40,10 @@ namespace TagSDK.Models.Receivable.Position
         public EffectStrategy EffectStrategy { get; set; }
 
         [JsonProperty("effectAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal EffectAmount { get; set; }
 
         [JsonProperty("committedEffectAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal CommittedEffectAmount { get; set; }
 

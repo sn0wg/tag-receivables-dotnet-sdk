@@ -7,7 +7,6 @@ namespace TagSDK.Models.Receivable.Notification
 {
     public abstract class BaseNotification
     {
-
         [JsonProperty("processKey")]
         public string ProcessKey { get; set; }
 

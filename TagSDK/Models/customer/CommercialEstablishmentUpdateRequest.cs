@@ -5,7 +5,6 @@ namespace TagSDK.Models.Customer
 {
     public class CommercialEstablishmentUpdateRequest
     {
-
         [JsonProperty("commercialEstablishments")]
         public CommercialEstablishmentUpdateInput CommercialEstablishment { get; set; }
     }

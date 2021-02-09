@@ -14,17 +14,14 @@ namespace TagSDK.Models.Receivable.Notification
         public string PaymentScheme { get; set; }
 
         [JsonProperty("totalAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal TotalAmount { get; set; }
 
         [JsonProperty("committedAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal CommittedAmount { get; set; }
 
         [JsonProperty("uncommittedAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal UncommittedAmount { get; set; }
 

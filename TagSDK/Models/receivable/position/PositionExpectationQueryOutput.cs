@@ -13,27 +13,22 @@ namespace TagSDK.Models.Receivable.Position
         public string Key { get; set; }
 
         [JsonProperty("totalAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal TotalAmount { get; set; }
 
         [JsonProperty("settledAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal SettledAmount { get; set; }
 
         [JsonProperty("balanceAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal BalanceAmount { get; set; }
 
         [JsonProperty("committedAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal CommittedAmount { get; set; }
 
         [JsonProperty("uncommittedAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal UncommittedAmount { get; set; }
 

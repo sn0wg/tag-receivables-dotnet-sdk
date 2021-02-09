@@ -27,14 +27,14 @@ namespace Testes
         [TestMethod]
         public async Task ListNotificationSettlementTest()
         {
-            var result = await nS.getSettlementNotification(date, profile);
+            var result = await nS.GetSettlementNotification(date, profile);
 
             Print(result);
         }
         [TestMethod]
         public async Task ListNotificationSettlementRejectTest()
         {
-            var result = await nS.getSettlementRejectNotification(DateTime.Parse("2020-12-10"), profile);
+            var result = await nS.GetSettlementRejectNotification(DateTime.Parse("2020-12-10"), profile);
 
             Print(result);
         }
@@ -42,35 +42,35 @@ namespace Testes
         [Ignore]
         public async Task ListNotificationAdvancementTest()
         {
-            var result = await nS.getAdvancementNotification(date, profile);
+            var result = await nS.GetAdvancementNotification(date, profile);
 
             Print(result);
         }
         [TestMethod]
         public async Task ListContractNotificationTest()
         {
-            var result = await nS.getContractNotification(DateTime.Parse("2020-12-09"), profile);
+            var result = await nS.GetContractNotification(DateTime.Parse("2020-12-09"), profile);
 
             Print(result);
         }
         [TestMethod]
         public async Task ListNotificationConsentTest()
         {
-            var result = await nS.getConsentNotification(date, profile);
+            var result = await nS.GetConsentNotification(date, profile);
 
             Print(result);
         }
         [TestMethod]
         public async Task ListNotificationProcessKeyTest()
         {
-            var result = await nS.getNotificationKey("2c76b0f6-513a-4c07-a17a-d37b9b6484f9", profile);
+            var result = await nS.GetNotificationKey("2c76b0f6-513a-4c07-a17a-d37b9b6484f9", profile);
 
             Print(result);
         }
         [TestMethod]
         public async Task ListNotificationKeyTest()
         {
-            var result = await nS.getNotificationProcessKey("826392f6-d199-4e2c-b557-f4ae3fb871b3", profile);
+            var result = await nS.GetNotificationProcessKey("826392f6-d199-4e2c-b557-f4ae3fb871b3", profile);
 
             Print(result);
         }

@@ -7,15 +7,13 @@ namespace TagSDK.Validators
 {
     public class DefaultModelValidator : IModelValidator
     {
-        Dictionary<Type, IEnumerable<FluentValidation.IValidator>> _validatorsInstance = new Dictionary<Type, IEnumerable<FluentValidation.IValidator>>();
-
-        Dictionary<Type, IEnumerable<Type>> _validators = new Dictionary<Type, IEnumerable<Type>>();
+        private readonly Dictionary<Type, IEnumerable<FluentValidation.IValidator>> _validatorsInstance = new Dictionary<Type, IEnumerable<FluentValidation.IValidator>>();
+        private readonly Dictionary<Type, IEnumerable<Type>> _validators = new Dictionary<Type, IEnumerable<Type>>();
 
         public DefaultModelValidator(Dictionary<Type, IEnumerable<Type>> validators)
         {
             _validators = validators;
         }
-
 
         private IEnumerable<FluentValidation.IValidator> InstantiateValidators<T>()
         {
@@ -27,7 +25,9 @@ namespace TagSDK.Validators
         private IEnumerable<FluentValidation.IValidator> GetValidators<T>()
         {
             if (!_validatorsInstance.ContainsKey(typeof(T)))
+            {
                 _validatorsInstance.Add(typeof(T), InstantiateValidators<T>());
+            }
 
             return _validatorsInstance[typeof(T)];
         }
@@ -38,7 +38,5 @@ namespace TagSDK.Validators
                 .SelectMany(result => result.Errors)
                 .Where(f => f != null)
                 .ToList();
-
-
     }
 }

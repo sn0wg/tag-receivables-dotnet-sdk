@@ -8,6 +8,5 @@ namespace TagSDK.Models.Receivable.Settlement
     {
         [JsonProperty("settlements")]
         public List<SettlementDetail> Settlements { get; set; }
-
     }
 }

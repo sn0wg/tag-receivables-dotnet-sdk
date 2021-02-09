@@ -7,12 +7,12 @@ namespace TagSDK.Utils
     {
         public override decimal ReadJson(JsonReader reader, Type objectType, decimal existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            return (existingValue/100)+0.00m;
+            return (existingValue / 100) + 0.00m;
         }
 
         public override void WriteJson(JsonWriter writer, decimal value, JsonSerializer serializer)
         {
-            long result = Convert.ToInt64(value * 100);
+            var result = Convert.ToInt64(value * 100);
             writer.WriteValue(result);
         }
     }

@@ -6,6 +6,6 @@ namespace TagSDK.Authorization
 {
     public interface IAuthorizator
     {
-        Task<String> GetToken(Profile profile, bool refresh = false);
+        Task<string> GetToken(Profile profile, bool refresh = false);
     }
 }

@@ -6,7 +6,6 @@ namespace TagSDK.Models.Receivable.Consent
 {
     public class ConsentValidityChangeRequest
     {
-
         [JsonProperty("startDate")]
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd")]
         public DateTime? StartDate { get; set; }

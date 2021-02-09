@@ -5,7 +5,6 @@ namespace TagSDK.Models.Receivable.Register
 {
     public class ReceivableRequest
     {
-
         [JsonProperty("processReference")]
         public string ProcessReference { get; set; }
 

@@ -23,30 +23,30 @@ namespace TagSDK.Factories
 {
     public static class TagSdk
     {
-        private static TagServiceCollection factory = null;
-        public static TagServiceCollection GetServices(Action<SDKOptions> options)
+        private static TagServiceCollection _factory = null;
+        public static TagServiceCollection GetServices(Action<SDKOptions> actOptions)
         {
-            if (factory == null)
+            if (_factory == null)
             {
                 IServiceCollection serviceCollection = new ServiceCollection();
 
-                SDKOptions _options = new SDKOptions();
-                options(_options);
+                var options = new SDKOptions();
+                actOptions(options);
 
-                RegisterServices(serviceCollection, _options);
+                RegisterServices(serviceCollection, options);
 
-                factory = new TagServiceCollection(serviceCollection.BuildServiceProvider());
+                _factory = new TagServiceCollection(serviceCollection.BuildServiceProvider());
             }
 
-            return factory;
+            return _factory;
         }
 
-        public static IServiceCollection AddTagSDK(this IServiceCollection services, Action<SDKOptions> options)
+        public static IServiceCollection AddTagSDK(this IServiceCollection services, Action<SDKOptions> actOptions)
         {
-            SDKOptions _options = new SDKOptions();
-            options(_options);
+            var options = new SDKOptions();
+            actOptions(options);
 
-            RegisterServices(services, _options);
+            RegisterServices(services, options);
 
             return services;
         }
@@ -58,7 +58,7 @@ namespace TagSDK.Factories
                         .AddTransient<IModelValidator, DefaultModelValidator>()
                         .AddTransient<IRestClient, RestClient>((provider) =>
                         {
-                            RestClient restClient = new RestClient();
+                            var restClient = new RestClient();
                             restClient.UseNewtonsoftJson();
                             return restClient;
                         })
@@ -85,45 +85,49 @@ namespace TagSDK.Factories
 
     public class TagServiceCollection
     {
-        protected readonly IServiceProvider serviceProvider;
+        protected readonly IServiceProvider ServiceProvider;
 
         internal TagServiceCollection(IServiceProvider serviceProvider)
         {
-            this.serviceProvider = serviceProvider;
+            ServiceProvider = serviceProvider;
 
             FluentValidation.AssemblyScanner
                 .FindValidatorsInAssembly(typeof(TagServiceCollection).Assembly)
                 .ForEach(result =>
                 {
                     if (Validators.ContainsKey(result.InterfaceType))
+                    {
                         (Validators[result.InterfaceType] as List<Type>).Add(result.ValidatorType);
+                    }
                     else
+                    {
                         Validators.Add(result.InterfaceType, new List<Type>() { result.ValidatorType });
+                    }
                 });
         }
 
         private Dictionary<Type, IEnumerable<Type>> Validators { get; set; } = new Dictionary<Type, IEnumerable<Type>>();
 
-        public IAuthenticateService AuthenticateService { get => serviceProvider.GetService<IAuthenticateService>(); }
+        public IAuthenticateService AuthenticateService => ServiceProvider.GetService<IAuthenticateService>();
 
-        public IReceivableService ReceivableService { get => serviceProvider.GetService<IReceivableService>(); }
+        public IReceivableService ReceivableService => ServiceProvider.GetService<IReceivableService>();
 
-        public IAdvancementService AdvancementService { get => serviceProvider.GetService<IAdvancementService>(); }
+        public IAdvancementService AdvancementService => ServiceProvider.GetService<IAdvancementService>();
 
-        public ICommercialEstablishmentService CommercialEstablishmentService { get => serviceProvider.GetService<ICommercialEstablishmentService>(); }
+        public ICommercialEstablishmentService CommercialEstablishmentService => ServiceProvider.GetService<ICommercialEstablishmentService>();
 
-        public INotificationService NotificationService { get => serviceProvider.GetService<INotificationService>(); }
+        public INotificationService NotificationService => ServiceProvider.GetService<INotificationService>();
 
-        public ITransactionService TransactionService { get => serviceProvider.GetService<ITransactionService>(); }
+        public ITransactionService TransactionService => ServiceProvider.GetService<ITransactionService>();
 
-        public ISettlementService SettlementService { get => serviceProvider.GetService<ISettlementService>(); }
+        public ISettlementService SettlementService => ServiceProvider.GetService<ISettlementService>();
 
-        public IReconciliationService ReconciliationService { get => serviceProvider.GetService<IReconciliationService>(); }
-        public IPositionService PositionService { get => serviceProvider.GetService<IPositionService>(); }
+        public IReconciliationService ReconciliationService => ServiceProvider.GetService<IReconciliationService>();
+        public IPositionService PositionService => ServiceProvider.GetService<IPositionService>();
 
-        public IContractService ContractService { get => serviceProvider.GetService<IContractService>(); }
+        public IContractService ContractService => ServiceProvider.GetService<IContractService>();
 
-        public IConsentService ConsentService { get => serviceProvider.GetService<IConsentService>(); }
+        public IConsentService ConsentService => ServiceProvider.GetService<IConsentService>();
 
     }
 }

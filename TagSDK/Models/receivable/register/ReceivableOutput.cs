@@ -7,7 +7,6 @@ namespace TagSDK.Models.Receivable.Register
 {
     public class ReceivableOutput
     {
-
         [JsonProperty("key")]
         public string Key { get; set; }
 
@@ -29,6 +28,5 @@ namespace TagSDK.Models.Receivable.Register
 
         [JsonProperty("settlements")]
         public List<ReceivableSettlementOutput> Settlements { get; set; }
-
     }
 }

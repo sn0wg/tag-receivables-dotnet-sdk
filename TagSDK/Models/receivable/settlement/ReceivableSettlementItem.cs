@@ -4,10 +4,8 @@ using TagSDK.Utils;
 
 namespace TagSDK.Models.Receivable.Settlement
 {
-
     public class ReceivableSettlementItem
     {
-
         [JsonProperty("key")]
         public string Key { get; set; }
 
@@ -24,12 +22,10 @@ namespace TagSDK.Models.Receivable.Settlement
         public string AssetHolder { get; set; }
 
         [JsonProperty("settlementDate")]
-
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd")]
         public DateTime SettlementDate { get; set; }
 
         [JsonProperty("amount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal Amount { get; set; }
 

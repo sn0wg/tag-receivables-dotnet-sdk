@@ -8,7 +8,6 @@ namespace TagSDK.Models.Receivable.Contract
 {
     public class ContractSpecification
     {
-
         [JsonProperty("expectedSettlementDate")]
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd")]
         public DateTime? ExpectedSettlementDate { get; set; }
@@ -27,7 +26,6 @@ namespace TagSDK.Models.Receivable.Contract
         public string PaymentScheme { get; set; }
 
         [JsonProperty("effectValue")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal EffectValue { get; set; }
     }

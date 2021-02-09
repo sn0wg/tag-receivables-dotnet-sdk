@@ -9,7 +9,6 @@ namespace TagSDK.Models.Receivable.Contract
 {
     public class Contract
     {
-
         [JsonProperty("reference")]
         public string Reference { get; set; }
 
@@ -56,7 +55,6 @@ namespace TagSDK.Models.Receivable.Contract
         public EffectStrategy EffectStrategy { get; set; }
 
         [JsonProperty("percentageValue")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal PercentageValue { get; set; }
 
@@ -64,7 +62,6 @@ namespace TagSDK.Models.Receivable.Contract
         public BankAccount BankAccount { get; set; }
 
         [JsonProperty("contractSpecifications")]
-
         public List<ContractSpecification> ContractSpecifications { get; set; }
     }
 }

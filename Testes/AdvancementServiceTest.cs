@@ -12,13 +12,11 @@ namespace Testes
     [Ignore]
     public class AdvancementServiceTest : BaseTest
     {
-
-
-        IAdvancementService advacementService;
+        IAdvancementService _advacementService;
         public AdvancementServiceTest()
         {
             Init();
-            advacementService = fac.AdvancementService;
+            _advacementService = fac.AdvancementService;
         }
 
         [TestMethod]
@@ -41,7 +39,7 @@ namespace Testes
             adItems.Add(adItem);
             AdvancementRequest adInput = new AdvancementRequest();
             adInput.Advancements = adItems;
-            var result = await advacementService.InsertAdvancements(adInput);
+            var result = await _advacementService.InsertAdvancements(adInput);
 
             Print(result);
         }

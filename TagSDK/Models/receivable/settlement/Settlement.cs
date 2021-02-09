@@ -9,7 +9,7 @@ namespace TagSDK.Models.Receivable.Settlement
     public class Settlement
     {
         [JsonProperty("reference")]
-        public string reference { get; set; }
+        public string Reference { get; set; }
 
         [JsonProperty("assetHolderDocumentType")]
         [JsonConverter(typeof(StringEnumConverter))]
@@ -23,12 +23,10 @@ namespace TagSDK.Models.Receivable.Settlement
         public DateTime? SettlementDate { get; set; }
 
         [JsonProperty("amount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal Amount { get; set; }
 
-
-        [JsonProperty("settlementObligationDate")]  
+        [JsonProperty("settlementObligationDate")]
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd")]
         public DateTime? SettlementObligationDate { get; set; }
 

@@ -7,18 +7,18 @@ namespace TagSDK.Pipeline
 {
     public class PipelineDefaultBehavior<TIn, TOut> : IPipelineBehavior<TIn, TOut>
     {
-        protected readonly IServiceProvider provider;
+        protected readonly IServiceProvider Provider;
         public PipelineDefaultBehavior(IServiceProvider provider)
         {
-            this.provider = provider;
+            Provider = provider;
         }
 
         public IFilter<RequestCommand<TIn, TOut>, ResponseCommand<TOut>> GetPipiline()
         {
             return new PipelineBuilder<RequestCommand<TIn, TOut>, ResponseCommand<TOut>>()
-                .Register(this.provider.GetService<LogMidleware<TIn, TOut>>())
+                .Register(Provider.GetService<LogMidleware<TIn, TOut>>())
                 //.Register(this.provider.GetService<ValidateMidleware<TIn, TOut>>())
-                .Register(this.provider.GetService<RequestMidleware<TIn, TOut>>())
+                .Register(Provider.GetService<RequestMidleware<TIn, TOut>>())
                 .Build();
 
         }

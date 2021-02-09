@@ -7,7 +7,6 @@ namespace TagSDK.Models.Receivable.Contract
 {
     public class ContractQueryFilter
     {
-
         [DisplayName("startContractDueDate")]
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd")]
         public DateTime? StartContractDueDate { get; set; } = null;

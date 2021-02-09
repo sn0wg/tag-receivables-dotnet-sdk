@@ -6,7 +6,6 @@ namespace TagSDK.Models.Response
 {
     public class BaseQueryResponse
     {
-
         [JsonProperty("queryKey")]
         public string QueryKey { get; set; }
 

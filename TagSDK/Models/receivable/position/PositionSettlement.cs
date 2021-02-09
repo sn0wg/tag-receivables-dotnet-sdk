@@ -22,7 +22,6 @@ namespace TagSDK.Models.Receivable.Position
         public string AssetHolder { get; set; }
 
         [JsonProperty("amount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal Amount { get; set; }
 

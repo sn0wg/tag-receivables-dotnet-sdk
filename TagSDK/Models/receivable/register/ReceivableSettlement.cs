@@ -23,7 +23,6 @@ namespace TagSDK.Models.Receivable.Register
         public DateTime? SettlementDate { get; set; }
 
         [JsonProperty("amount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal Amount { get; set; }
 

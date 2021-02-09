@@ -14,24 +14,26 @@ namespace Testes
     [Ignore]
     public class CommercialEstablishmentServiceTest : BaseTest
     {
-        ICommercialEstablishmentService cEstablishmentService;
+        private readonly ICommercialEstablishmentService _cEstablishmentService;
         public CommercialEstablishmentServiceTest()
         {
             Init();
-            cEstablishmentService = fac.CommercialEstablishmentService;
+            _cEstablishmentService = fac.CommercialEstablishmentService;
         }
 
 
         [TestMethod]
-        public async Task insertCommercialEstablishmentTest()
+        public async Task InsertCommercialEstablishmentTest()
         {
-            List<string> paymentSchemes = new List<string>();
-            paymentSchemes.Add("VCC");
-            paymentSchemes.Add("MCC");
+            var paymentSchemes = new List<string>
+            {
+                "VCC",
+                "MCC"
+            };
 
-            string cnpj = this.GeraCNPJ();
+            var cnpj = GeraCNPJ();
 
-            BankAccount bankAccount = new BankAccount
+            var bankAccount = new BankAccount
             {
                 Branch = "1144",
                 Account = "13341",
@@ -42,7 +44,7 @@ namespace Testes
                 DocumentNumber = cnpj
             };
 
-            CommercialEstablishment cmEstab = new CommercialEstablishment()
+            var cmEstab = new CommercialEstablishment()
             {
                 DocumentType = DocumentType.CNPJ,
                 DocumentNumber = cnpj,
@@ -50,15 +52,17 @@ namespace Testes
                 BankAccount = bankAccount
             };
 
-            List<CommercialEstablishment> commercialEstablishments = new List<CommercialEstablishment>();
-            commercialEstablishments.Add(cmEstab);
+            var commercialEstablishments = new List<CommercialEstablishment>
+            {
+                cmEstab
+            };
 
-            CommercialEstablishmentRequest cmEstabReq = new CommercialEstablishmentRequest()
+            var cmEstabReq = new CommercialEstablishmentRequest()
             {
                 CommercialEstablishments = commercialEstablishments
             };
 
-            var result = await cEstablishmentService.RegisterCommercialEstablishments(cmEstabReq);
+            var result = await _cEstablishmentService.RegisterCommercialEstablishments(cmEstabReq);
 
             Print(result);
         }
@@ -66,12 +70,14 @@ namespace Testes
 
         [TestMethod]
         [Ignore]
-        public async Task updateCommercialEstablishmentTest()
+        public async Task UpdateCommercialEstablishmentTest()
         {
-            List<string> paymentSchemes = new List<string>();
-            paymentSchemes.Add("VCC");
-            string cnpj = "54762153000103";
-            BankAccount bankAccount = new BankAccount
+            var paymentSchemes = new List<string>
+            {
+                "VCC"
+            };
+            var cnpj = "54762153000103";
+            var bankAccount = new BankAccount
             {
                 Branch = "1144",
                 Account = "13341",
@@ -81,37 +87,41 @@ namespace Testes
                 DocumentType = DocumentType.CNPJ,
                 DocumentNumber = cnpj
             };
-            CommercialEstablishmentUpdateInput cmEstab = new CommercialEstablishmentUpdateInput();
-            cmEstab.PaymentSchemes = (paymentSchemes);
-            cmEstab.BankAccount = (bankAccount);
-            cmEstab.Enabled = (true);
-            CommercialEstablishmentUpdateRequest cmEstabReq = new CommercialEstablishmentUpdateRequest();
-            cmEstabReq.CommercialEstablishment = (cmEstab);
+            var cmEstab = new CommercialEstablishmentUpdateInput
+            {
+                PaymentSchemes = (paymentSchemes),
+                BankAccount = (bankAccount),
+                Enabled = (true)
+            };
+            var cmEstabReq = new CommercialEstablishmentUpdateRequest
+            {
+                CommercialEstablishment = (cmEstab)
+            };
 
-            var result = await cEstablishmentService.UpdateCommercialEstablishments(cnpj, cmEstabReq);
+            var result = await _cEstablishmentService.UpdateCommercialEstablishments(cnpj, cmEstabReq);
 
             Print(result);
         }
 
 
         [TestMethod]
-        public async Task listCommercialEstablishmentWithPaginationTest()
+        public async Task ListCommercialEstablishmentWithPaginationTest()
         {
-            Pagination pag = new Pagination
+            var pag = new Pagination
             {
                 Limit = 1,
                 Page = 2
             };
-            var result = await cEstablishmentService.GetCommercialEstablishmentsWithPagination(pag);
+            var result = await _cEstablishmentService.GetCommercialEstablishmentsWithPagination(pag);
 
             Print(result);
         }
 
 
         [TestMethod]
-        public async Task listCommercialEstablishmentWithDocumentNumberTest()
+        public async Task ListCommercialEstablishmentWithDocumentNumberTest()
         {
-            var result = await cEstablishmentService.GetCommercialEstablishmentsWithDocumentNumber("62661584000101");
+            var result = await _cEstablishmentService.GetCommercialEstablishmentsWithDocumentNumber("62661584000101");
 
             Print(result);
         }

@@ -6,7 +6,6 @@ namespace TagSDK.Models.Receivable.Reconciliation
 {
     public class ReconciliationConfirmationResponse
     {
-
         [JsonProperty("reconciliationKey")]
         public string ReconciliationKey { get; set; }
 
@@ -14,7 +13,6 @@ namespace TagSDK.Models.Receivable.Reconciliation
         public string ReconciliationStatus { get; set; }
 
         [JsonProperty("createdAt")]
-
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")]
         public DateTime? CreatedAt { get; set; }
     }

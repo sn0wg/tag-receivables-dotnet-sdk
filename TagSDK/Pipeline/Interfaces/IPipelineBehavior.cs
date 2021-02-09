@@ -1,11 +1,8 @@
-﻿using System;
-
-using TagSDK.Commands;
-using TagSDK.Pipeline;
+﻿using TagSDK.Commands;
 
 namespace TagSDK.Pipeline.Interfaces
 {
-    interface IPipelineBehavior<TIn,TOut>
+    internal interface IPipelineBehavior<TIn, TOut>
     {
         IFilter<RequestCommand<TIn, TOut>, ResponseCommand<TOut>> GetPipiline();
     }

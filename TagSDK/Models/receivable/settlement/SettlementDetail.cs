@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace TagSDK.Models.Receivable.Settlement
 {
@@ -12,6 +9,5 @@ namespace TagSDK.Models.Receivable.Settlement
 
         [JsonProperty("reference")]
         public string Reference { get; set; }
-
     }
 }

@@ -8,13 +8,9 @@ namespace TagSDK.Services.Receivable.Contract
     {
         Task<ContractResponse> InsertContract(ContractRequest contract);
         Task<ContractPaginatedQueryResponse> ListContractsByReference(string reference, Pagination page);
-
         Task<ContractPaginatedQueryResponse> ListContractsByKey(string key);
-
         Task<ContractPaginatedQueryResponse> ListContractsByProcessKey(string processKey, Pagination page);
-
         Task<ContractPaginatedQueryResponse> ListContractsWithParams(ContractQueryFilter queryParams, Pagination page);
-
         Task<ContractHistoryResponse> GetContractHistoryWithKey(string key);
     }
 }

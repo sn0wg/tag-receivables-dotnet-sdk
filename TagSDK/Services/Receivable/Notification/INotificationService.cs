@@ -8,13 +8,12 @@ namespace TagSDK.Services.Receivable.Notification
 {
     public interface INotificationService
     {
-
-        Task<List<NotificationDefaultResponse<NotificationSettlement>>> getSettlementNotification(DateTime date, Profile profile);
-        Task<List<NotificationDefaultResponse<NotificationSettlementReject>>> getSettlementRejectNotification(DateTime date, Profile profile);
-        Task<List<NotificationDefaultResponse<NotificationAdvancement>>> getAdvancementNotification(DateTime date, Profile profile);
-        Task<List<NotificationDefaultResponse<NotificationContract>>> getContractNotification(DateTime date, Profile profile);
-        Task<List<NotificationDefaultResponse<NotificationConsentWrapper>>> getConsentNotification(DateTime date, Profile profile);
-        Task<List<NotificationDefaultResponse<NotificationContract>>> getNotificationProcessKey(string pkey, Profile profile);
-        Task<List<NotificationDefaultResponse<NotificationContract>>> getNotificationKey(string key, Profile profile);
+        Task<List<NotificationDefaultResponse<NotificationSettlement>>> GetSettlementNotification(DateTime date, Profile profile);
+        Task<List<NotificationDefaultResponse<NotificationSettlementReject>>> GetSettlementRejectNotification(DateTime date, Profile profile);
+        Task<List<NotificationDefaultResponse<NotificationAdvancement>>> GetAdvancementNotification(DateTime date, Profile profile);
+        Task<List<NotificationDefaultResponse<NotificationContract>>> GetContractNotification(DateTime date, Profile profile);
+        Task<List<NotificationDefaultResponse<NotificationConsentWrapper>>> GetConsentNotification(DateTime date, Profile profile);
+        Task<List<NotificationDefaultResponse<NotificationContract>>> GetNotificationProcessKey(string pkey, Profile profile);
+        Task<List<NotificationDefaultResponse<NotificationContract>>> GetNotificationKey(string key, Profile profile);
     }
 }

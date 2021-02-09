@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TagSDK.Constants
+﻿namespace TagSDK.Constants
 {
     internal class Constants
     {
         public class Authentication
-        {   
+        {
             public const string BasePath = "token";
         }
 
         public class Consent
         {
-
             public const string BasePath = "receivable/consent";
 
             public const string BasePathOptIn = "receivable/consent/optin";
@@ -30,15 +25,15 @@ namespace TagSDK.Constants
             {
                 public const string BasePath = "receivable/contract";
                 public const string BasePathHistory = "receivable/contract/history";
-                public const string  BasePathReference = "receivable/contract/reference";
-                public const string  BasePathKey = "receivable/contract/key";
-                public const string  BasePathProcessKey = "receivable/contract/processkey";
-        }
+                public const string BasePathReference = "receivable/contract/reference";
+                public const string BasePathKey = "receivable/contract/key";
+                public const string BasePathProcessKey = "receivable/contract/processkey";
+            }
 
             public class Advancement
             {
                 public const string BasePath = "receivable/advancement";
-        }
+            }
 
         }
 
@@ -65,12 +60,11 @@ namespace TagSDK.Constants
             public const string BasePathReject = "receivable/settlement/reject";
             public const string BasePathProcessKey = "receivable/settlement/processKey";
             public const string BasePathKey = "receivable/settlement/key";
-            public const string BasePathReference = "receivable/settlement/reference";            
+            public const string BasePathReference = "receivable/settlement/reference";
         }
 
         public class Transaction
         {
-
             public const string BasePathTransaction = "receivable/transaction";
 
             public const string BasePathTransactionKey = "receivable/transaction/";
@@ -78,7 +72,6 @@ namespace TagSDK.Constants
 
         public class Reconciliation
         {
-
             public const string BasePath = "receivable/reconciliation";
 
             public const string BasePathKey = "receivable/reconciliation/key";

@@ -8,7 +8,6 @@ namespace TagSDK.Models.Customer
 {
     public class CommercialEstablishmentQueryOutput
     {
-
         [JsonProperty("key")]
         public string Key { get; set; }
 

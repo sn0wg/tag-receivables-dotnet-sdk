@@ -31,7 +31,7 @@ namespace TagSDK.Models.Receivable.Contract
 
         [JsonProperty("assetHolderDocumentType")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public DocumentType assetHolderDocumentType { get; set; }
+        public DocumentType AssetHolderDocumentType { get; set; }
 
         [JsonProperty("assetHolder")]
         public string AssetHolder { get; set; }
@@ -52,12 +52,10 @@ namespace TagSDK.Models.Receivable.Contract
         public WarrantyType WarrantyType { get; set; }
 
         [JsonProperty("warrantyAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal WarrantyAmount { get; set; }
 
         [JsonProperty("balanceDue")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal BalanceDue { get; set; }
 

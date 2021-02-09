@@ -14,9 +14,7 @@ namespace TagSDK.Models.Receivable.Advancement
         public DateTime? SettlementObligationDate { get; set; }
 
         [JsonProperty("advancedAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal AdvancedAmount { get; set; }
-
     }
 }

@@ -6,7 +6,6 @@ namespace TagSDK.Models.Receivable.Register
 {
     public class ReceivableResponse : BaseResponse
     {
-
         [JsonProperty("receivables")]
         public List<ReceivableOutput> Receivables { get; set; }
     }

@@ -10,7 +10,6 @@ namespace TagSDK.Models.Receivable.Position
 {
     public class PositionExpectationQueryResponse : BaseResponse
     {
-
         [JsonProperty("settlementExpectations")]
         public List<PositionExpectationQueryOutput> SettlementExpectations { get; set; }
 

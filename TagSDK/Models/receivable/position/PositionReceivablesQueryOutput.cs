@@ -50,6 +50,5 @@ namespace TagSDK.Models.Receivable.Position
 
         [JsonProperty("settlementObligations")]
         public List<PositionSettlementObligation> SettlementObligations { get; set; }
-
     }
 }

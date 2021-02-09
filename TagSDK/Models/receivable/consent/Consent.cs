@@ -6,7 +6,6 @@ namespace TagSDK.Models.Receivable.Consent
 {
     public class Consent
     {
-
         [JsonProperty("beneficiary")]
         public string Beneficiary { get; set; }
 

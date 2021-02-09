@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace TagSDK.Pipeline
 {
-    public interface IFilter<TIn,TOut>
+    public interface IFilter<TIn, TOut>
     {
         void Register(IFilter<TIn, TOut> filter);
         Task<TOut> Execute(TIn context);
@@ -13,57 +13,53 @@ namespace TagSDK.Pipeline
 
     public abstract class Filter<TIn, TOut> : IFilter<TIn, TOut>
     {
-        private IFilter<TIn, TOut> next;
+        private IFilter<TIn, TOut> _next;
         protected abstract Task<TOut> Execute(TIn context, Func<TIn, Task<TOut>> next);
 
         public void Register(IFilter<TIn, TOut> filter)
         {
-            if (next == null)
+            if (_next == null)
             {
-                next = filter;
+                _next = filter;
             }
             else
             {
-                next.Register(filter);
+                _next.Register(filter);
             }
         }
 
         Task<TOut> IFilter<TIn, TOut>.Execute(TIn context)
         {
-            return Execute(context, ctx => next == null
+            return Execute(context, ctx => _next == null
                   ? Task.FromResult(default(TOut))
-                  : next.Execute(ctx));
+                  : _next.Execute(ctx));
         }
     }
 
-    
-
-    public class PipelineBuilder<T,TOut>
+    public class PipelineBuilder<T, TOut>
     {
-        private readonly List<Func<IFilter<T, TOut>>> filters = new List<Func<IFilter<T, TOut>>>();
+        private readonly List<Func<IFilter<T, TOut>>> _filters = new List<Func<IFilter<T, TOut>>>();
 
         public PipelineBuilder<T, TOut> Register(Func<IFilter<T, TOut>> filter)
         {
-            filters.Add(filter);
+            _filters.Add(filter);
             return this;
         }
 
         public PipelineBuilder<T, TOut> Register(IFilter<T, TOut> filter)
         {
-            filters.Add(() => filter);
+            _filters.Add(() => filter);
             return this;
         }
 
         public IFilter<T, TOut> Build()
         {
-            var root = filters.First().Invoke();
+            var root = _filters.First().Invoke();
 
-            foreach (var filter in filters.Skip(1))
+            foreach (var filter in _filters.Skip(1))
             {
                 root.Register(filter.Invoke());
             }
-
-
 
             return root;
         }

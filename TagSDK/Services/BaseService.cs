@@ -8,19 +8,19 @@ namespace TagSDK.Services
 {
     public abstract class BaseService
     {
-        protected readonly IServiceProvider serviceProvider;
-        protected readonly SDKOptions options;
+        protected readonly IServiceProvider ServiceProvider;
+        protected readonly SDKOptions Options;
 
         public BaseService(IServiceProvider serviceProvider, SDKOptions options)
         {
-            this.serviceProvider = serviceProvider;
-            this.options = options;
+            ServiceProvider = serviceProvider;
+            Options = options;
         }
 
         public IFilter<RequestCommand<object, TOut>, ResponseCommand<TOut>> GetPipeline<TOut>() =>
-            this.GetPipeline<object,TOut>();
+            GetPipeline<object, TOut>();
 
         public IFilter<RequestCommand<TIn, TOut>, ResponseCommand<TOut>> GetPipeline<TIn, TOut>() =>
-            this.serviceProvider.GetService<IPipelineBehavior<TIn, TOut>>().GetPipiline();
+            ServiceProvider.GetService<IPipelineBehavior<TIn, TOut>>().GetPipiline();
     }
 }

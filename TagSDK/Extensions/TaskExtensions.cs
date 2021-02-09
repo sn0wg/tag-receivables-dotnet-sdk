@@ -16,25 +16,24 @@ namespace TagSDK.Extensions
             {
                 if (!t.IsFaulted)
                 {
-                    RestSharp.IRestResponse<T> result = t.Result.Response;
+                    var result = t.Result.Response;
 
                     if (result.IsSuccessful)
+                    {
                         return result.Data;
+                    }
                     else
                     {
-                        ResponseError responseError = null;
-                        if (String.IsNullOrEmpty(result.Content))
-                        {
-                            responseError = JsonConvert.DeserializeObject<ResponseError>("{}");
-                        } else
-                        {
-                            responseError = JsonConvert.DeserializeObject<ResponseError>(result.Content);
-                        }
+                        var responseError = string.IsNullOrEmpty(result.Content)
+                            ? JsonConvert.DeserializeObject<ResponseError>("{}")
+                            : JsonConvert.DeserializeObject<ResponseError>(result.Content);
                         throw new TagSDKException(result.ErrorMessage, result.StatusCode, responseError);
                     }
                 }
                 else
+                {
                     throw t.Exception;
+                }
             });
         }
 
@@ -45,10 +44,12 @@ namespace TagSDK.Extensions
             {
                 if (!t.IsFaulted)
                 {
-                    IRestResponse<T> result = t.Result;
+                    var result = t.Result;
 
                     if (result.IsSuccessful)
+                    {
                         return result.Data;
+                    }
                     else
                     {
                         var responseError = JsonConvert.DeserializeObject<ResponseError>(result.Content);
@@ -56,7 +57,9 @@ namespace TagSDK.Extensions
                     }
                 }
                 else
+                {
                     throw t.Exception;
+                }
             });
         }
     }

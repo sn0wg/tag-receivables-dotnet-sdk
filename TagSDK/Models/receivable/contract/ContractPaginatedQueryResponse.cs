@@ -6,7 +6,6 @@ namespace TagSDK.Models.Receivable.Contract
 {
     public class ContractPaginatedQueryResponse : BasePaginatedQueryResponse
     {
-
         [JsonProperty("contracts")]
         public List<ContractQueryOutput> Contracts { get; set; }
     }

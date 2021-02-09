@@ -38,7 +38,7 @@ namespace Testes
             };
             Settlement settlementItem = new Settlement
             {
-                reference = "ST-01",
+                Reference = "ST-01",
                 AssetHolderDocumentType = DocumentType.CNPJ,
                 AssetHolder = "51914361000184",
                 SettlementDate = DateTime.Parse("2020-12-16"),

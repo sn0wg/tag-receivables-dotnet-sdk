@@ -7,11 +7,10 @@ namespace TagSDK.Models.Customer
 {
     public class CommercialEstablishmentPaginatedQueryResponse : BaseResponse
     {
-
         [JsonProperty("commercialEstablishments")]
-        private List<CommercialEstablishmentQueryOutput> CommercialEstablishments { get; set; }
+        public List<CommercialEstablishmentQueryOutput> CommercialEstablishments { get; set; }
 
         [JsonProperty("pages")]
-        private PagesOutput Pages { get; set; }
+        public PagesOutput Pages { get; set; }
     }
 }

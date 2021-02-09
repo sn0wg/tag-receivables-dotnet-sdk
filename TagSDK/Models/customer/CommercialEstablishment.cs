@@ -7,7 +7,6 @@ namespace TagSDK.Models.Customer
 {
     public class CommercialEstablishment
     {
-
         [JsonProperty("documentType")]
         [JsonConverter(typeof(StringEnumConverter))]
         public DocumentType DocumentType { get; set; }

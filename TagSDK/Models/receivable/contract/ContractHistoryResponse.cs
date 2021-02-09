@@ -37,12 +37,10 @@ namespace TagSDK.Models.Receivable.Contract
         public WarrantyType WarrantyType { get; set; }
 
         [JsonProperty("warrantyAmount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal WarrantyAmount { get; set; }
 
         [JsonProperty("balanceDue")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal BalanceDue { get; set; }
 

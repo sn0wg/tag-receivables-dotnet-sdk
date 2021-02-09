@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System;
 using TagSDK.Utils;
 
-
 namespace TagSDK.Models.Errors
 {
     public class ResponseError
@@ -12,13 +11,13 @@ namespace TagSDK.Models.Errors
         public List<string> Errors { get; set; }
 
         [JsonProperty("error")]
-        private List<string> AltErrors { set { Errors = value; } }
+        private List<string> AltErrors { set => Errors = value; }
 
         [JsonProperty("processKey")]
         public string ProcessKey { get; set; }
 
         [JsonProperty("processkey")]
-        private string AltProcessKey { set { ProcessKey = value; } }
+        private string AltProcessKey { set => ProcessKey = value; }
 
         [JsonProperty("createdAt")]
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")]
@@ -26,6 +25,6 @@ namespace TagSDK.Models.Errors
 
         [JsonProperty("createdDate")]
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")]
-        private DateTime? AltCreatedAt { set { CreatedAt = value; } }
+        private DateTime? AltCreatedAt { set => CreatedAt = value; }
     }
 }

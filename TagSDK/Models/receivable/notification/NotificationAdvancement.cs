@@ -9,7 +9,6 @@ namespace TagSDK.Models.Receivable.Notification
 {
     public class NotificationAdvancement : BaseNotification
     {
-
         [JsonProperty("key")]
         public string Key { get; set; }
 
@@ -39,7 +38,6 @@ namespace TagSDK.Models.Receivable.Notification
         public DateTime? OperationExpectedSettlementDate { get; set; }
 
         [JsonProperty("operationValue")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal OperationValue { get; set; }
 

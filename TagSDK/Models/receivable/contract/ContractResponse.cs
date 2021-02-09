@@ -6,7 +6,6 @@ namespace TagSDK.Models.Receivable.Contract
 {
     public class ContractResponse : BaseResponse
     {
-
         [JsonProperty("contracts")]
         public List<ContractOutput> Contracts { get; set; }
 

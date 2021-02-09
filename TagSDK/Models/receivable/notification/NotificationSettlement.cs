@@ -26,7 +26,6 @@ namespace TagSDK.Models.Receivable.Notification
         public DocumentType AssetHolderDocumentType { get; set; }
 
         [JsonProperty("settlementDate")]
-
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")]
         public DateTime? SettlementDate { get; set; }
 
@@ -35,7 +34,6 @@ namespace TagSDK.Models.Receivable.Notification
         public DateTime? SettlementObligationDate { get; set; }
 
         [JsonProperty("amount")]
-
         [JsonConverter(typeof(CustomSerializer))]
         public decimal Amount { get; set; }
 

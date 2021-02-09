@@ -9,6 +9,5 @@ namespace TagSDK.Models.Receivable.Consent
     {
         [JsonProperty("optIns")]
         public List<ConsentQueryOutput> OptIns { get; set; }
-
     }
 }

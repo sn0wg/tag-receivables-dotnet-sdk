@@ -9,7 +9,6 @@ namespace TagSDK.Models.Receivable.Position
 {
     public class PositionSettlementObligation
     {
-
         [JsonProperty("key")]
         public string Key { get; set; }
 
@@ -56,7 +55,6 @@ namespace TagSDK.Models.Receivable.Position
         public string AssetHolder { get; set; }
 
         [JsonProperty("lastUpdated")]
-
         [JsonConverter(typeof(CustomDateTimeConverter), "yyyy-MM-dd'T'HH:mm:ss.SSSSS'Z'")]
         public DateTime? LastUpdated { get; set; }
 
@@ -68,6 +66,5 @@ namespace TagSDK.Models.Receivable.Position
 
         [JsonProperty("contractObligations")]
         public List<PositionContractObligations> ContractObligationItems { get; set; }
-
     }
 }
