@@ -14,17 +14,18 @@ namespace Testes
     [Ignore]
     public class ServiceTest : BaseTest
     {
-        private IReceivableService tService = null;
+        private readonly IReceivableService _tService = null;
+
         public ServiceTest()
         {
             Init();
-            tService = Fac.ReceivableService;
+            _tService = Fac.ReceivableService;
         }
 
         [TestMethod]
-        public async Task insertReceivableTest()
+        public async Task InsertReceivableTest()
         {
-            BankAccount bankAccount = new BankAccount
+            var bankAccount = new BankAccount
             {
                 Branch = "1144",
                 Account = "13341",
@@ -35,7 +36,7 @@ namespace Testes
                 DocumentNumber = "34144310000100"
             };
 
-            ReceivableSettlement settlement = new ReceivableSettlement()
+            var settlement = new ReceivableSettlement()
             {
                 Reference = "L_1875",
                 AssetHolder = "34144310000100",
@@ -46,10 +47,12 @@ namespace Testes
                 BankAccount = bankAccount
             };
 
-            List<ReceivableSettlement> settlements = new List<ReceivableSettlement>();
-            settlements.Add(settlement);
+            var settlements = new List<ReceivableSettlement>
+            {
+                settlement
+            };
 
-            Receivable receivable = new Receivable()
+            var receivable = new Receivable()
             {
                 Reference = "UR_450",
                 DueDate = DateTime.Now.AddDays(1),
@@ -62,16 +65,18 @@ namespace Testes
                 Settlements = settlements
             };
 
-            string processReference = "PR_550";
-            List<Receivable> receivables = new List<Receivable>();
-            receivables.Add(receivable);
-            ReceivableRequest rI = new ReceivableRequest
+            var processReference = "PR_550";
+            var receivables = new List<Receivable>
+            {
+                receivable
+            };
+            var rI = new ReceivableRequest
             {
                 ProcessReference = processReference,
                 Receivables = receivables
             };
 
-            var result = await this.tService.RegisterReceivable(rI);
+            var result = await _tService.RegisterReceivable(rI);
 
             Print(result);
         }

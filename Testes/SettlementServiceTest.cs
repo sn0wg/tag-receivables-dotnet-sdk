@@ -24,10 +24,10 @@ namespace Testes
         }
 
         [TestMethod]
-        public async Task callSettlementVanillaTest()
+        public async Task CallSettlementVanillaTest()
         {
 
-            BankAccount bankAccount = new BankAccount
+            var bankAccount = new BankAccount
             {
                 Branch = "1144",
                 Account = "13341",
@@ -37,7 +37,7 @@ namespace Testes
                 DocumentType = DocumentType.CNPJ,
                 DocumentNumber = "51914361000184"
             };
-            Settlement settlementItem = new Settlement
+            var settlementItem = new Settlement
             {
                 Reference = "ST-01",
                 AssetHolderDocumentType = DocumentType.CNPJ,
@@ -47,32 +47,40 @@ namespace Testes
                 SettlementObligationDate = DateTime.Parse("2020-12-16"),
                 PaymentScheme = "VCC",
                 BankAccount = bankAccount
-            };//= new Settlement("ST-01", DocumentType.CNPJ, "51914361000184", Date.from(Instant.now()), 50000L, Date.from(Instant.now()), "VCC", bankAccount);
-            List<Settlement> settlements = new List<Settlement>();
-            settlements.Add(settlementItem);
-            SettlementRequest receivableSettlementInput = new SettlementRequest();
-            receivableSettlementInput.Settlements = settlements;
+            };
+            var settlements = new List<Settlement>
+            {
+                settlementItem
+            };
+            var receivableSettlementInput = new SettlementRequest
+            {
+                Settlements = settlements
+            };
             var result = await _settlementService.ReportSettlement(receivableSettlementInput);
 
             Print(result);
         }
 
         [TestMethod]
-        public async Task rejectSettlementVanillaTest()
+        public async Task RejectSettlementVanillaTest()
         {
-            SettlementReject receivableSettlementItem = new SettlementReject();
-            receivableSettlementItem.Key = ("df78ff30-1825-4922-b26f-856f28652c1e");
-            receivableSettlementItem.ReasonDetails = ("Liquidacao nao executada.");
-            List<SettlementReject> settlements = new List<SettlementReject>();
-            settlements.Add(receivableSettlementItem);
-            SettlementRejectRequest receivableSettlementInput = new SettlementRejectRequest { Settlements = settlements };
+            var receivableSettlementItem = new SettlementReject
+            {
+                Key = ("df78ff30-1825-4922-b26f-856f28652c1e"),
+                ReasonDetails = ("Liquidacao nao executada.")
+            };
+            var settlements = new List<SettlementReject>
+            {
+                receivableSettlementItem
+            };
+            var receivableSettlementInput = new SettlementRejectRequest { Settlements = settlements };
             var result = await _settlementService.RejectSettlement(receivableSettlementInput);
 
             Print(result);
         }
 
         [TestMethod]
-        public async Task queryByKey()
+        public async Task QueryByKey()
         {
             var result = await _settlementService.GetSettlementByKey("df78ff30-1825-4922-b26f-856f28652c1e");
 
@@ -80,32 +88,34 @@ namespace Testes
         }
 
         [TestMethod]
-        public async Task queryByProcessKey()
+        public async Task QueryByProcessKey()
         {
-            Pagination pag = new Pagination { Page = 1, Limit = 100 };
+            var pag = new Pagination { Page = 1, Limit = 100 };
             var result = await _settlementService.GetSettlementByProcessKey("dad71f6e-3de6-4dcd-bb54-abe08d944ae8", pag);
 
             Print(result);
         }
 
         [TestMethod]
-        public async Task queryByReference()
+        public async Task QueryByReference()
         {
-            Pagination pag = new Pagination { Page = 1, Limit = 100 };
+            var pag = new Pagination { Page = 1, Limit = 100 };
             var result = await _settlementService.GetSettlementByReference("L_1875", pag);
 
             Print(result);
         }
 
         [TestMethod]
-        public async Task callSettlementWithParamsVanillaTest()
+        public async Task CallSettlementWithParamsVanillaTest()
         {
-            SettlementQueryFilter settlementParams = new SettlementQueryFilter();
-            settlementParams.StartSettlementDate = DateTime.Parse("2020-01-19");
-            settlementParams.EndSettlementDate = DateTime.Now;
-            settlementParams.PaymentScheme = ("VCC");
-            settlementParams.AssetHolder = ("51914361000184");
-            Pagination pag = new Pagination { Page = 1, Limit = 100 };
+            var settlementParams = new SettlementQueryFilter
+            {
+                StartSettlementDate = DateTime.Parse("2020-01-19"),
+                EndSettlementDate = DateTime.Now,
+                PaymentScheme = ("VCC"),
+                AssetHolder = ("51914361000184")
+            };
+            var pag = new Pagination { Page = 1, Limit = 100 };
             var result = await _settlementService.GetSettlementWithParams(settlementParams, pag);
 
             Print(result);

@@ -10,38 +10,42 @@ namespace Testes
     [Ignore]
     public class ReconciliationServiceTest : BaseTest
     {
-        private IReconciliationService rService = null;
+        private readonly IReconciliationService _rService = null;
         public ReconciliationServiceTest()
         {
             Init();
-            rService = Fac.ReconciliationService;
+            _rService = Fac.ReconciliationService;
         }
 
         [TestMethod]
-        public async Task insertReconciliation()
+        public async Task InsertReconciliation()
         {
-            ReconciliationRequest rInput = new ReconciliationRequest();
-            rInput.ReconciliationDate = DateTime.Now;
-            var result = await rService.InsertConciliation(rInput);
+            var rInput = new ReconciliationRequest
+            {
+                ReconciliationDate = DateTime.Now
+            };
+            var result = await _rService.InsertConciliation(rInput);
             Print(result);
         }
 
         [TestMethod]
-        public async Task getReconciliationWithKey()
+        public async Task GetReconciliationWithKey()
         {
-            var result = await rService.GetReconciliationWithKey("42ea18fd-a5d9-4bf9-a9c9-bc0515edb615");
+            var result = await _rService.GetReconciliationWithKey("42ea18fd-a5d9-4bf9-a9c9-bc0515edb615");
             Print(result);
         }
 
         [TestMethod]
-        public async Task confirmReconciliation()
+        public async Task ConfirmReconciliation()
         {
-            ReconciliationRequest rInput = new ReconciliationRequest();
-            rInput.ReconciliationDate = DateTime.Now;
+            var rInput = new ReconciliationRequest
+            {
+                ReconciliationDate = DateTime.Now
+            };
 
-            var response = await rService.InsertConciliation(rInput);
+            var response = await _rService.InsertConciliation(rInput);
 
-            var result = await rService.ConfirmReconciliation(response.ReconciliationKey, new ReconciliationConfirmationRequest { ReconciliationKey = response.ReconciliationKey });
+            var result = await _rService.ConfirmReconciliation(response.ReconciliationKey, new ReconciliationConfirmationRequest { ReconciliationKey = response.ReconciliationKey });
 
             Print(result);
         }

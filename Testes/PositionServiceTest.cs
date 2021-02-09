@@ -10,17 +10,17 @@ namespace Testes
     [Ignore]
     public class PositionServiceTest : BaseTest
     {
-        IPositionService receivablePositionService;
+        private readonly IPositionService _receivablePositionService;
         public PositionServiceTest()
         {
             Init();
-            receivablePositionService = Fac.PositionService;
+            _receivablePositionService = Fac.PositionService;
         }
 
         [TestMethod]
         public async Task AgendaPositionWithKeyTest()
         {
-            var result = await receivablePositionService.GetPositionsWithKey("48ad40ab594434f916e497da745efa0c");
+            var result = await _receivablePositionService.GetPositionsWithKey("48ad40ab594434f916e497da745efa0c");
 
             Print(result);
         }
@@ -28,7 +28,7 @@ namespace Testes
         [TestMethod]
         public async Task AgendaPositionWithReferenceTest()
         {
-            var result = await receivablePositionService.GetPositionsWithReference("UR_450");
+            var result = await _receivablePositionService.GetPositionsWithReference("UR_450");
 
             Print(result);
         }
@@ -36,7 +36,7 @@ namespace Testes
         [TestMethod]
         public async Task AgendaPositionWithProcessReferenceTest()
         {
-            var result = await receivablePositionService.GetPositionsWithProcessReference("PR_550");
+            var result = await _receivablePositionService.GetPositionsWithProcessReference("PR_550");
 
             Print(result);
         }
@@ -44,7 +44,7 @@ namespace Testes
         [TestMethod]
         public async Task AgendaPositionWithOriginalAssetHolder()
         {
-            PositionQueryFilter rPositionParams = new PositionQueryFilter
+            var rPositionParams = new PositionQueryFilter
             {
                 PaymentScheme = "VCC",
                 InitialExpectedSettlementDate = DateTime.Parse("2020-12-01"),
@@ -52,7 +52,7 @@ namespace Testes
                 FinalExpectedSettlementDate = DateTime.Parse("2020-12-31")
 
             };
-            var result = await receivablePositionService.GetPositionsWithOriginalAssetHolder("61821451000184", rPositionParams);
+            var result = await _receivablePositionService.GetPositionsWithOriginalAssetHolder("61821451000184", rPositionParams);
 
             Print(result);
         }
@@ -60,7 +60,7 @@ namespace Testes
         [TestMethod]
         public async Task AgendaPositionWithAssetHolder()
         {
-            PositionQueryFilter rPositionParams = new PositionQueryFilter
+            var rPositionParams = new PositionQueryFilter
             {
                 PaymentScheme = "VCC",
                 InitialExpectedSettlementDate = DateTime.Parse("2020-12-01"),
@@ -69,7 +69,7 @@ namespace Testes
 
             };
 
-            var result = await receivablePositionService.GetPositionsWithAssetHolder("61821451000184", rPositionParams);
+            var result = await _receivablePositionService.GetPositionsWithAssetHolder("61821451000184", rPositionParams);
 
             Print(result);
 
