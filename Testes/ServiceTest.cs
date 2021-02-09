@@ -18,9 +18,8 @@ namespace Testes
         public ServiceTest()
         {
             Init();
-            tService = fac.ReceivableService;
+            tService = Fac.ReceivableService;
         }
-
 
         [TestMethod]
         public async Task insertReceivableTest()

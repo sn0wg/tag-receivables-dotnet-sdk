@@ -11,67 +11,86 @@ namespace Testes
     [Ignore]
     public class TransactionServiceTest : BaseTest
     {
-        private ITransactionService srv;
+
+        private readonly ITransactionService _srv;
         public TransactionServiceTest()
         {
             Init();
-            srv = fac.TransactionService;
+            _srv = Fac.TransactionService;
         }
 
-
         [TestMethod]
-        public async Task createTransactedUnitsReceivables()
+        public async Task CreateTransactedUnitsReceivables()
         {
-            Transaction item = new Transaction();
-            item.Identifier = "0125048520200513";
-            item.TransactionDate = DateTime.Parse("2022-05-15");
-            item.Amount = (500000);
-            item.Reference = ("TR-488");
-            item.DueDate = DateTime.Parse("2020-06-15");
-            List<Transaction> itemList = new List<Transaction>();
-            itemList.Add(item);
-            TransactionReceivable inputItem = new TransactionReceivable();
-            inputItem.Key = ("e9773677dcf7c64e8d30ba551be3c436");
-            inputItem.Transactions = (itemList);
-            List<TransactionReceivable> inputItemList = new List<TransactionReceivable>();
-            inputItemList.Add(inputItem);
-            TransactionRequest input = new TransactionRequest();
-            input.Receivables = inputItemList;
-            var result = await srv.CreateTransactedUnitsReceivables(input);
+            var item = new Transaction
+            {
+                Identifier = "0125048520200513",
+                TransactionDate = DateTime.Parse("2022-05-15"),
+                Amount = (500000),
+                Reference = ("TR-488"),
+                DueDate = DateTime.Parse
+                ("2020-06-15")
+            };
+            var itemList = new List<Transaction>
+            {
+                item
+            };
+            var inputItem = new TransactionReceivable
+            {
+                Key = ("e9773677dcf7c64e8d30ba551be3c436"),
+                Transactions = (itemList)
+            };
+            var inputItemList = new List<TransactionReceivable>
+            {
+                inputItem
+            };
+            var input = new TransactionRequest
+            {
+                Receivables = inputItemList
+            };
+            var result = await _srv.CreateTransactedUnitsReceivables(input);
 
             Print(result);
         }
-
 
         [TestMethod]
         [Ignore]
-        public async Task getTransactionTest()
+        public async Task GetTransactionTest()
         {
-            var result = await srv.GetTransaction("e9773677dcf7c64e8d30ba551be3c436");
+            var result = await _srv.GetTransaction("e9773677dcf7c64e8d30ba551be3c436");
 
             Print(result);
         }
 
-
         [TestMethod]
-        public async Task rectifyTransactedUnitsReceivables()
+        public async Task RectifyTransactedUnitsReceivables()
         {
-            Transaction item = new Transaction();
-            item.Identifier = "0125048520200513";
-            item.TransactionDate = DateTime.Parse("2022-05-15");
-            item.Amount = 500000;
-            item.Reference = "TR-488";
-            item.DueDate = DateTime.Parse("2020-06-15");
-            List<Transaction> itemList = new List<Transaction>();
-            itemList.Add(item);
-            TransactionReceivable inputItem = new TransactionReceivable();
-            inputItem.Key = "e9773677dcf7c64e8d30ba551be3c436";
-            inputItem.Transactions = itemList;
-            List<TransactionReceivable> inputItemList = new List<TransactionReceivable>();
-            inputItemList.Add(inputItem);
-            TransactionRequest input = new TransactionRequest();
-            input.Receivables = inputItemList;
-            var result = await srv.RectifyTransactedUnitsReceivables(input);
+            var item = new Transaction
+            {
+                Identifier = "0125048520200513",
+                TransactionDate = DateTime.Parse("2022-05-15"),
+                Amount = 500000,
+                Reference = "TR-488",
+                DueDate = DateTime.Parse("2020-06-15")
+            };
+            var itemList = new List<Transaction>
+            {
+                item
+            };
+            var inputItem = new TransactionReceivable
+            {
+                Key = "e9773677dcf7c64e8d30ba551be3c436",
+                Transactions = itemList
+            };
+            var inputItemList = new List<TransactionReceivable>
+            {
+                inputItem
+            };
+            var input = new TransactionRequest
+            {
+                Receivables = inputItemList
+            };
+            var result = await _srv.RectifyTransactedUnitsReceivables(input);
 
             Print(result);
         }

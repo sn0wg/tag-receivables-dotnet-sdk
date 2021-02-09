@@ -18,9 +18,8 @@ namespace Testes
         public CommercialEstablishmentServiceTest()
         {
             Init();
-            _cEstablishmentService = fac.CommercialEstablishmentService;
+            _cEstablishmentService = Fac.CommercialEstablishmentService;
         }
-
 
         [TestMethod]
         public async Task InsertCommercialEstablishmentTest()
@@ -67,7 +66,6 @@ namespace Testes
             Print(result);
         }
 
-
         [TestMethod]
         [Ignore]
         public async Task UpdateCommercialEstablishmentTest()
@@ -103,7 +101,6 @@ namespace Testes
             Print(result);
         }
 
-
         [TestMethod]
         public async Task ListCommercialEstablishmentWithPaginationTest()
         {
@@ -116,7 +113,6 @@ namespace Testes
 
             Print(result);
         }
-
 
         [TestMethod]
         public async Task ListCommercialEstablishmentWithDocumentNumberTest()

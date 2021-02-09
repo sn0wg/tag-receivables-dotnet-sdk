@@ -14,8 +14,9 @@ namespace Testes
         public PositionServiceTest()
         {
             Init();
-            receivablePositionService = fac.PositionService;
+            receivablePositionService = Fac.PositionService;
         }
+
         [TestMethod]
         public async Task AgendaPositionWithKeyTest()
         {
@@ -23,6 +24,7 @@ namespace Testes
 
             Print(result);
         }
+
         [TestMethod]
         public async Task AgendaPositionWithReferenceTest()
         {
@@ -30,6 +32,7 @@ namespace Testes
 
             Print(result);
         }
+
         [TestMethod]
         public async Task AgendaPositionWithProcessReferenceTest()
         {
@@ -71,7 +74,5 @@ namespace Testes
             Print(result);
 
         }
-
-
     }
 }

@@ -15,17 +15,17 @@ namespace Testes
     [Ignore]
     public class ContractServiceTest : BaseTest
     {
-        private IContractService contractService = null;
+        private readonly IContractService _contractService = null;
         public ContractServiceTest()
         {
             Init();
-            contractService = fac.ContractService;
+            _contractService = Fac.ContractService;
         }
 
         [TestMethod]
-        public async Task insertContract()
+        public async Task InsertContract()
         {
-            BankAccount bankAccount = new BankAccount
+            var bankAccount = new BankAccount
             {
                 Branch = "1144",
                 Account = "13341",
@@ -35,112 +35,118 @@ namespace Testes
                 DocumentType = DocumentType.CNPJ,
                 DocumentNumber = "39624514000153"
             };
-            ContractSpecification ctEspecification = new ContractSpecification();
-            ctEspecification.ExpectedSettlementDate = DateTime.Parse("2021-01-01T05:00:00Z");
-            ctEspecification.OriginalAssetHolderDocumentType = DocumentType.CNPJ;
-            ctEspecification.OriginalAssetHolder = "39624514000153";
-            ctEspecification.ReceivableDebtor = "74190072000185";
-            ctEspecification.PaymentScheme = "VCC";
-            ctEspecification.EffectValue = 100L;
-            List<ContractSpecification> ctEspecifications = new List<ContractSpecification>();
-            ctEspecifications.Add(ctEspecification);
-            Contract ctItem = new Contract();
-            ctItem.Reference = "CT_01";
-            ctItem.ContractDueDate = DateTime.Parse("2021-01-01T05:00:00Z");
-            ctItem.AssetHolderDocumentType = DocumentType.CNPJ;
-            ctItem.AssetHolder = "39624514000153";
-            ctItem.ContractUniqueIdentifier = "CT_01";
-            ctItem.SignatureDate = DateTime.Parse("2021-01-01T05:00:00Z");
-            ctItem.EffectType = EffectType.WARRANTY;
-            ctItem.WarrantyType = WarrantyType.FIDUCIARY;
-            ctItem.WarrantyAmount = 100L;
-            ctItem.BalanceDue = 100L;
-            ctItem.DivisionMethod = DivisionMethodType.FIXEDAMOUNT;
-            ctItem.EffectStrategy = EffectStrategy.SPECIFIC;
-            ctItem.PercentageValue = 10;
-            ctItem.BankAccount = bankAccount;
-            ctItem.ContractSpecifications = ctEspecifications;
-            List<Contract> ctItems = new List<Contract>();
-            ctItems.Add(ctItem);
-            ContractRequest contractInput = new ContractRequest();
-            contractInput.Contracts = ctItems;
-            var result = await this.contractService.InsertContract(contractInput);
+            var ctEspecification = new ContractSpecification
+            {
+                ExpectedSettlementDate = DateTime.Parse("2021-01-01T05:00:00Z"),
+                OriginalAssetHolderDocumentType = DocumentType.CNPJ,
+                OriginalAssetHolder = "39624514000153",
+                ReceivableDebtor = "74190072000185",
+                PaymentScheme = "VCC",
+                EffectValue = 100L
+            };
+            var ctEspecifications = new List<ContractSpecification>
+            {
+                ctEspecification
+            };
+            var ctItem = new Contract
+            {
+                Reference = "CT_01",
+                ContractDueDate = DateTime.Parse("2021-01-01T05:00:00Z"),
+                AssetHolderDocumentType = DocumentType.CNPJ,
+                AssetHolder = "39624514000153",
+                ContractUniqueIdentifier = "CT_01",
+                SignatureDate = DateTime.Parse("2021-01-01T05:00:00Z"),
+                EffectType = EffectType.WARRANTY,
+                WarrantyType = WarrantyType.FIDUCIARY,
+                WarrantyAmount = 100L,
+                BalanceDue = 100L,
+                DivisionMethod = DivisionMethodType.FIXEDAMOUNT,
+                EffectStrategy = EffectStrategy.SPECIFIC,
+                PercentageValue = 10,
+                BankAccount = bankAccount,
+                ContractSpecifications = ctEspecifications
+            };
+            var ctItems = new List<Contract>
+            {
+                ctItem
+            };
+            var contractInput = new ContractRequest
+            {
+                Contracts = ctItems
+            };
+            var result = await _contractService.InsertContract(contractInput);
 
             Print(result);
         }
 
-
         [TestMethod]
-        public async Task listContractsByReference()
+        public async Task ListContractsByReference()
         {
-            Pagination page = new Pagination()
+            var page = new Pagination()
             {
                 Page = 1,
                 Limit = 10
             };
-            var result = await contractService.ListContractsByReference("CT_01", page);
+            var result = await _contractService.ListContractsByReference("CT_01", page);
 
             Print(result);
         }
 
-
         [TestMethod]
-        public async Task listContractsByKey()
+        public async Task ListContractsByKey()
         {
-            var result = await contractService.ListContractsByKey("dda6c698-705d-49b5-a84c-c0a2d605b77c");
+            var result = await _contractService.ListContractsByKey("dda6c698-705d-49b5-a84c-c0a2d605b77c");
 
             Print(result);
         }
 
-
         [TestMethod]
-        public async Task listContractsByProcessKey()
+        public async Task ListContractsByProcessKey()
         {
 
-            Pagination page = new Pagination()
+            var page = new Pagination()
             {
                 Page = 1,
                 Limit = 10
             };
 
-            var result = await contractService.ListContractsByProcessKey("7c4f2552-4dcf-4320-a460-8fd6fd8ff09b", page);
+            var result = await _contractService.ListContractsByProcessKey("7c4f2552-4dcf-4320-a460-8fd6fd8ff09b", page);
 
             Print(result);
         }
 
-
         [TestMethod]
-        public async Task listContractsWithParams()
+        public async Task ListContractsWithParams()
         {
-            ContractQueryFilter cInput = new ContractQueryFilter();
-            cInput.StartContractDueDate = DateTime.Parse("2020-01-01");
-            cInput.EndContractDueDate = DateTime.Parse("2020-12-31");
-            cInput.AssetHolder = "61821451000184";
+            var cInput = new ContractQueryFilter
+            {
+                StartContractDueDate = DateTime.Parse("2020-01-01"),
+                EndContractDueDate = DateTime.Parse("2020-12-31"),
+                AssetHolder = "61821451000184"
+            };
             // cInput.StartSignatureDate = null;
             // cInput.endSignatureDate = DateTime.Parse("2021-01-01T05:00:00Z");
             // cInput.startCreatedAt = DateTime.Parse("2021-01-01T05:00:00Z");
             // cInput.endCreatedAt = DateTime.Parse("2021-01-01T05:00:00Z");
 
-            Pagination page = new Pagination()
+            var page = new Pagination()
             {
                 Page = 1,
                 Limit = 10
             };
 
 
-            var result = await contractService.ListContractsWithParams(cInput, page);
+            var result = await _contractService.ListContractsWithParams(cInput, page);
 
             Print(result);
         }
-
 
         [TestMethod]
         [Ignore]
-        public async Task getContractHistoryTest()
+        public async Task GetContractHistoryTest()
         {
-            var result = await contractService.GetContractHistoryWithKey("CT_01");
+            var result = await _contractService.GetContractHistoryWithKey("CT_01");
             Print(result);
         }
-
     }
 }

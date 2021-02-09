@@ -15,11 +15,12 @@ namespace Testes
     [Ignore]
     public class SettlementServiceTest : BaseTest
     {
-        private ISettlementService settlementService = null;
+        private readonly ISettlementService _settlementService = null;
+
         public SettlementServiceTest()
         {
             Init();
-            settlementService = fac.SettlementService;
+            _settlementService = Fac.SettlementService;
         }
 
         [TestMethod]
@@ -51,11 +52,10 @@ namespace Testes
             settlements.Add(settlementItem);
             SettlementRequest receivableSettlementInput = new SettlementRequest();
             receivableSettlementInput.Settlements = settlements;
-            var result = await settlementService.ReportSettlement(receivableSettlementInput);
+            var result = await _settlementService.ReportSettlement(receivableSettlementInput);
 
             Print(result);
         }
-
 
         [TestMethod]
         public async Task rejectSettlementVanillaTest()
@@ -66,40 +66,36 @@ namespace Testes
             List<SettlementReject> settlements = new List<SettlementReject>();
             settlements.Add(receivableSettlementItem);
             SettlementRejectRequest receivableSettlementInput = new SettlementRejectRequest { Settlements = settlements };
-            var result = await settlementService.RejectSettlement(receivableSettlementInput);
+            var result = await _settlementService.RejectSettlement(receivableSettlementInput);
 
             Print(result);
         }
-
 
         [TestMethod]
         public async Task queryByKey()
         {
-            var result = await settlementService.GetSettlementByKey("df78ff30-1825-4922-b26f-856f28652c1e");
+            var result = await _settlementService.GetSettlementByKey("df78ff30-1825-4922-b26f-856f28652c1e");
 
             Print(result);
         }
-
 
         [TestMethod]
         public async Task queryByProcessKey()
         {
             Pagination pag = new Pagination { Page = 1, Limit = 100 };
-            var result = await settlementService.GetSettlementByProcessKey("dad71f6e-3de6-4dcd-bb54-abe08d944ae8", pag);
+            var result = await _settlementService.GetSettlementByProcessKey("dad71f6e-3de6-4dcd-bb54-abe08d944ae8", pag);
 
             Print(result);
         }
-
 
         [TestMethod]
         public async Task queryByReference()
         {
             Pagination pag = new Pagination { Page = 1, Limit = 100 };
-            var result = await settlementService.GetSettlementByReference("L_1875", pag);
+            var result = await _settlementService.GetSettlementByReference("L_1875", pag);
 
             Print(result);
         }
-
 
         [TestMethod]
         public async Task callSettlementWithParamsVanillaTest()
@@ -110,7 +106,7 @@ namespace Testes
             settlementParams.PaymentScheme = ("VCC");
             settlementParams.AssetHolder = ("51914361000184");
             Pagination pag = new Pagination { Page = 1, Limit = 100 };
-            var result = await settlementService.GetSettlementWithParams(settlementParams, pag);
+            var result = await _settlementService.GetSettlementWithParams(settlementParams, pag);
 
             Print(result);
         }

@@ -13,67 +13,71 @@ namespace Testes
     [Ignore]
     public class NotificationServiceTest : BaseTest
     {
-
-        DateTime date = DateTime.Parse("2020-12-10");
-        INotificationService nS;
-        private Profile profile = Profile.CREDITOR;
+        private readonly DateTime _date = DateTime.Parse("2020-12-10");
+        private readonly INotificationService _nS;
+        private readonly Profile _profile = Profile.CREDITOR;
 
         public NotificationServiceTest()
         {
             Init();
-            nS = fac.NotificationService;
+            _nS = Fac.NotificationService;
         }
 
         [TestMethod]
         public async Task ListNotificationSettlementTest()
         {
-            var result = await nS.GetSettlementNotification(date, profile);
+            var result = await _nS.GetSettlementNotification(_date, _profile);
 
             Print(result);
         }
+
         [TestMethod]
         public async Task ListNotificationSettlementRejectTest()
         {
-            var result = await nS.GetSettlementRejectNotification(DateTime.Parse("2020-12-10"), profile);
+            var result = await _nS.GetSettlementRejectNotification(DateTime.Parse("2020-12-10"), _profile);
 
             Print(result);
         }
+
         [TestMethod]
         [Ignore]
         public async Task ListNotificationAdvancementTest()
         {
-            var result = await nS.GetAdvancementNotification(date, profile);
+            var result = await _nS.GetAdvancementNotification(_date, _profile);
 
             Print(result);
         }
+
         [TestMethod]
         public async Task ListContractNotificationTest()
         {
-            var result = await nS.GetContractNotification(DateTime.Parse("2020-12-09"), profile);
+            var result = await _nS.GetContractNotification(DateTime.Parse("2020-12-09"), _profile);
 
             Print(result);
         }
+
         [TestMethod]
         public async Task ListNotificationConsentTest()
         {
-            var result = await nS.GetConsentNotification(date, profile);
+            var result = await _nS.GetConsentNotification(_date, _profile);
 
             Print(result);
         }
+
         [TestMethod]
         public async Task ListNotificationProcessKeyTest()
         {
-            var result = await nS.GetNotificationKey("2c76b0f6-513a-4c07-a17a-d37b9b6484f9", profile);
+            var result = await _nS.GetNotificationKey("2c76b0f6-513a-4c07-a17a-d37b9b6484f9", _profile);
 
             Print(result);
         }
+
         [TestMethod]
         public async Task ListNotificationKeyTest()
         {
-            var result = await nS.GetNotificationProcessKey("826392f6-d199-4e2c-b557-f4ae3fb871b3", profile);
+            var result = await _nS.GetNotificationProcessKey("826392f6-d199-4e2c-b557-f4ae3fb871b3", _profile);
 
             Print(result);
         }
-
     }
 }

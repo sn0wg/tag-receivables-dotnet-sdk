@@ -14,9 +14,8 @@ namespace Testes
         public ReconciliationServiceTest()
         {
             Init();
-            rService = fac.ReconciliationService;
+            rService = Fac.ReconciliationService;
         }
-
 
         [TestMethod]
         public async Task insertReconciliation()
@@ -25,7 +24,6 @@ namespace Testes
             rInput.ReconciliationDate = DateTime.Now;
             var result = await rService.InsertConciliation(rInput);
             Print(result);
-
         }
 
         [TestMethod]
